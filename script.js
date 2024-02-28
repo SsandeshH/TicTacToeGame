@@ -7,14 +7,12 @@ let grid = [
 
 
 function hasWon(lastPlayer) {
-    // Check rows and columns
     for (let i = 0; i < 3; i++) {
         if (grid[i][0] === lastPlayer && grid[i][1] === lastPlayer && grid[i][2] === lastPlayer ||
             grid[0][i] === lastPlayer && grid[1][i] === lastPlayer && grid[2][i] === lastPlayer) {
             return true;
         }
     }
-    // Check diagonals
     if (grid[0][0] === lastPlayer && grid[1][1] === lastPlayer && grid[2][2] === lastPlayer ||
         grid[0][2] === lastPlayer && grid[1][1] === lastPlayer && grid[2][0] === lastPlayer) {
         return true;
@@ -28,18 +26,27 @@ function handleClick(event) {
     const [x, y] = id.substring(3).split('').map(Number);
 
     if (grid[x][y] === 0) {
-        const currentPlayer = count % 2 === 0 ? 1 : 2;
+        const currentPlayer = count % 2 === 0 ? 1 : 2; //ternary operator chalako xu
         grid[x][y] = currentPlayer;
         event.target.textContent = currentPlayer === 1 ? 'X' : 'O';
+        
 
         if (hasWon(currentPlayer)) {
-            alert(`Player ${currentPlayer} wins!`);
-            resetGame();
+            
+            setTimeout(function() {
+                alert(`Player ${currentPlayer} wins!`);
+                resetGame();
+              }, 100);
+            
+            
         } else {
             count++;
             if (count === 9) {
-                alert("It's a draw!");
-                resetGame();
+                setTimeout(function(){
+                    alert("It's a draw!");
+                    resetGame();
+                })
+                
             }
         }
     } else {
@@ -47,7 +54,7 @@ function handleClick(event) {
     }
 }
 
-// Function to reset the game
+
 function resetGame() {
     count = 0;
     grid = [
@@ -64,7 +71,7 @@ function resetGame() {
 // Add click event listener to all boxes
 const boxes = document.querySelectorAll('.box');
 boxes.forEach(box => {
-    box.addEventListener('click', handleClick);
+    box.addEventListener("click", handleClick);
 });
 
 // reset button

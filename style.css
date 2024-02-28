@@ -68,3 +68,31 @@ button:hover{
 .box:hover {
     background-color: #eee;
 }
+
+@media screen and (max-width:471px) {
+    .container .board{
+        padding-left: 10px;
+        left: 30%;
+        position: absolute;
+        margin: 10px;
+        display: flex;
+        justify-content: space-between;
+        background-color: #5A3E5a;
+        height: 400px;
+        width: 450px;
+    }
+    
+    .box{
+        cursor: pointer;
+        background-color: #bc9abc;
+        margin: 12px;
+        height: 75px;
+        width: 75px;
+        font-size: 36px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        border: 1px solid black;
+        align-items: center;
+    }
+}
